@@ -1,0 +1,299 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===================================================
+   Light Theme (default)
+   =================================================== */
+:root {
+  --color-surface-50: #f8fafc;
+  --color-surface-100: #f1f5f9;
+  --color-surface-200: #e2e8f0;
+  --color-surface-300: #cbd5e1;
+  --color-surface-400: #94a3b8;
+  --color-surface-500: #64748b;
+  --color-surface-600: #475569;
+  --color-surface-700: #334155;
+  --color-surface-800: #1e293b;
+  --color-surface-900: #0f172a;
+  --color-surface-950: #020617;
+
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-card: #ffffff;
+  --border-color: #e2e8f0;
+}
+
+/* ===================================================
+   Dark Theme
+   =================================================== */
+.dark {
+  --color-surface-50: #0f172a;
+  --color-surface-100: #1e293b;
+  --color-surface-200: #334155;
+  --color-surface-300: #475569;
+  --color-surface-400: #64748b;
+  --color-surface-500: #94a3b8;
+  --color-surface-600: #cbd5e1;
+  --color-surface-700: #e2e8f0;
+  --color-surface-800: #f1f5f9;
+  --color-surface-900: #f8fafc;
+  --color-surface-950: #ffffff;
+
+  --bg-primary: #0f172a;
+  --bg-secondary: #020617;
+  --bg-card: #1e293b;
+  --border-color: #334155;
+}
+
+/* ===================================================
+   Base Styles
+   =================================================== */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-surface-300) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--color-surface-300);
+  border-radius: 3px;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  @apply bg-surface-50 text-surface-900 transition-colors duration-300;
+}
+
+/* ===================================================
+   Dark mode utility overrides
+   =================================================== */
+.dark .bg-white {
+  background-color: var(--bg-card) !important;
+}
+
+.dark .bg-black\/50 {
+  background-color: rgba(0, 0, 0, 0.7) !important;
+}
+
+.dark .bg-surface-50\/80,
+.dark .bg-white\/80 {
+  background-color: rgba(15, 23, 42, 0.8) !important;
+  backdrop-filter: blur(12px);
+}
+
+.dark input,
+.dark select,
+.dark textarea {
+  @apply bg-surface-100 border-surface-300 text-surface-900;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  @apply text-surface-400;
+}
+
+.dark .shadow-lg,
+.dark .shadow-xl,
+.dark .shadow-sm,
+.dark .shadow-md {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px -1px rgba(0, 0, 0, 0.2);
+}
+
+.dark .shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -4px rgba(0, 0, 0, 0.2);
+}
+
+.dark .shadow-xl {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.2);
+}
+
+/* ===================================================
+   Medical Theme Enhancements
+   =================================================== */
+
+/* Cross/plus medical icon utility */
+.medical-cross {
+  position: relative;
+  display: inline-block;
+}
+
+.medical-cross::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 60%;
+  background: currentColor;
+  border-radius: 2px;
+}
+
+.medical-cross::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(90deg);
+  width: 60%;
+  height: 60%;
+  background: currentColor;
+  border-radius: 2px;
+}
+
+/* Card hover medical lift effect */
+.medical-card {
+  background-color: var(--bg-card, #ffffff);
+  border-radius: 0.75rem;
+  border: 1px solid var(--border-color, #e2e8f0);
+  transition: all 0.3s ease;
+}
+
+.dark .medical-card {
+  background-color: var(--bg-card);
+  border-color: rgba(71, 85, 105, 0.2);
+}
+
+.medical-card:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.dark .medical-card:hover {
+  border-color: rgba(13, 148, 136, 0.3);
+}
+
+/* Pulse for waiting/healing indicator */
+.healing-pulse {
+  animation: healingPulse 2s ease-in-out infinite;
+}
+
+@keyframes healingPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(13, 148, 136, 0);
+  }
+}
+
+/* Medical badge style */
+.medical-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.125rem 0.625rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background-color: #f0fdfa;
+  color: #0f766e;
+  border: 1px solid #99f6e4;
+}
+
+.dark .medical-badge {
+  background-color: rgba(15, 78, 74, 0.3);
+  color: #5eead4;
+  border-color: rgba(15, 118, 110, 0.3);
+}
+
+/* Status indicators for medical states */
+.status-available {
+  @apply text-health-500;
+}
+
+.status-busy {
+  @apply text-danger-500;
+}
+
+.status-away {
+  @apply text-accent-500;
+}
+
+/* Soft medical gradient for banners */
+.medical-gradient {
+  background: linear-gradient(135deg, #0d9488 0%, #0f766e 50%, #115e59 100%);
+}
+
+.medical-gradient-light {
+  background: linear-gradient(135deg, #ccfbf1 0%, #99f6e4 50%, #5eead4 100%);
+}
+
+/* ===================================================
+   Calendar dark mode
+   =================================================== */
+.dark .rbc-calendar {
+  @apply text-surface-900;
+}
+
+.dark .rbc-header {
+  @apply border-surface-300 bg-surface-100;
+}
+
+.dark .rbc-day-bg {
+  @apply bg-surface-50;
+}
+
+.dark .rbc-off-range-bg {
+  @apply bg-surface-100;
+}
+
+.dark .rbc-today {
+  @apply bg-primary-900/20;
+}
+
+.dark .rbc-event {
+  @apply bg-primary-600 text-white;
+}
+
+.dark .rbc-btn-group button {
+  @apply text-surface-900 border-surface-300;
+}
+
+.dark .rbc-toolbar button:hover {
+  @apply bg-surface-200;
+}
+
+.dark .rbc-date-cell a {
+  @apply text-surface-900;
+}
+
+.dark .rbc-row-segment .rbc-event-content {
+  @apply text-white;
+}
+
+/* ===================================================
+   Recharts dark mode
+   =================================================== */
+.dark .recharts-text {
+  @apply fill-surface-600;
+}
+
+.dark .recharts-cartesian-grid line {
+  @apply stroke-surface-200;
+}
+
+.dark .recharts-tooltip-wrapper .recharts-default-tooltip {
+  @apply bg-surface-100 border-surface-300 !important;
+}
+
+.dark .recharts-legend-item-text {
+  @apply fill-surface-600 text-surface-600;
+}
+
+/* Transition on theme switch */
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
