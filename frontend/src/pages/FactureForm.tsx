@@ -104,7 +104,7 @@ const FactureForm: React.FC = () => {
                     <Trash2 className="w-4 h-4" />
                   </button>
                 )}
-                <div className="grid grid-cols-4 gap-2">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                   <div className="col-span-2">
                     <label className="text-xs text-surface-500">{t.facture.ligne.description}</label>
                     <input value={l.description} onChange={e => updateLigne(idx, 'description', e.target.value)}

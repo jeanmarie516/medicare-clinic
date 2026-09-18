@@ -14,6 +14,7 @@ Application web complète de gestion de clinique médicale avec **React.js** (fr
 - ✅ **Sécurité** (authentification JWT, 3 rôles: Admin/Médecin/Secrétaire)
 - ✅ **Génération de PDF** (prescriptions, factures)
 - ✅ **Journal d'audit** (traçabilité de toutes les actions)
+- ✅ **Responsive design** (mobile-first, Tailwind CSS)
 
 ## 🛠️ Technologies
 

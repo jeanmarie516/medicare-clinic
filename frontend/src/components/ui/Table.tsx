@@ -50,7 +50,27 @@ function Table<T extends { id?: number }>({
   }
 
   return (
-    <div className="medical-card p-0 overflow-hidden">
+    <>
+    {/* Vue mobile : cartes empilées */}
+    <div className="sm:hidden space-y-3">
+      {data.map((item, idx) => (
+        <div
+          key={(item as any).id || idx}
+          className={`medical-card p-4 ${onRowClick ? 'cursor-pointer active:bg-surface-50' : ''}`}
+          onClick={() => onRowClick?.(item)}
+        >
+          {columns.map((col) => (
+            <div key={col.key} className="flex items-start justify-between gap-4 py-1 text-sm border-b border-surface-100 dark:border-surface-300/10 last:border-0">
+              <span className="text-surface-500 shrink-0 font-medium">{col.header}</span>
+              <span className="text-surface-700 dark:text-surface-300 flex-1 min-w-0 text-right">{col.render ? col.render(item) : (item as any)[col.key] ?? '-'}</span>
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+
+    {/* Vue desktop / tablette : tableau avec défilement horizontal */}
+    <div className="hidden sm:block medical-card p-0 overflow-hidden">
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-surface-200 dark:divide-surface-300/20">
           <thead>
@@ -104,6 +124,7 @@ function Table<T extends { id?: number }>({
         </table>
       </div>
     </div>
+    </>
   );
 }
 
